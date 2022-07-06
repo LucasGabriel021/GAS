@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+     <base target="_top">
+
+     <!--Import Google Icon Font-->
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+     <!-- Compiled and minified CSS -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+
+<body>
+     <div class="container">
+          <div class="row">
+               <h1>Bem vindo a página de cadastro de equipes na PL</h1>
+          </div>
+          <div class="row">
+               <div class="input-field col s6">
+                    <input id="name_team" type="text" class="validate" required>
+                    <label for="name_team">Informe o nome do time</label>
+               </div>
+               <div class="input-field col s6">
+                    <input id="initials_team" type="text" class="validate" required>
+                    <label for="initials_team">Informe a sigla do time</label>
+               </div>
+          </div>
+          <div class="row">
+               <div class="input-field col s6">
+                    <input id="apelido_team" type="text" class="validate" required>
+                    <label for="apelido_team">Informe o apelido</label>
+               </div>
+               <div class="input-field col s6">
+                    <input id="city_team" type="text" class="validate" required>
+                    <label for="city_team">Informe a cidade</label>
+               </div>
+          </div>
+          <div class="row">
+               <button id="btn-submit" class="waves-effect deep-purple darken-4 btn"><i
+                         class="material-icons left">send</i>Cadastrar Equipe</button>
+          </div>
+     </div>
+
+     <!-- jQuery -->
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+     <!-- Compiled and minified JavaScript -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+     <!-- Inclusão do arquivo JS -->
+     <?!= incluir("ScriptHome"); ?>
+</body>
+
+</html>
