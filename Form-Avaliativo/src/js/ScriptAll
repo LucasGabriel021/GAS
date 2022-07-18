@@ -1,0 +1,242 @@
+
+//console.log("Estamos conectados!");
+
+// Variáveis 
+let inputNome = $("#nome");
+let inputEmail = $("#e-mail");
+let inputCriatvidade = $("#criatividade");
+let inputInfluencia = $("#influencia-persuasao");
+let inputGoggleA = $("#google-apresentacao");
+let inputNeurociencia = $("#neurociencia");
+let inputPlanejamento = $("#planejamento");
+let inputOratoria = $("#oratoria");
+let inputStorytelling = $("#storytelling");
+let campoTotal = $("#total-pontos");
+
+// Função que reseta os campos de perguntas ao clicar e campos de texto
+function btnReset() {
+
+     inputNome.val("");
+     inputEmail.val("");
+     inputCriatvidade.val("0");
+     inputInfluencia.val("0");
+     inputGoggleA.val("0");
+     inputNeurociencia.val("0");
+     inputPlanejamento.val("0");
+     inputOratoria.val("0");
+     inputStorytelling.val("0");
+     resetStyleTotal();
+
+}
+
+// Função que reseta os estilos do campo total de pontos
+function resetStyleTotal() {
+
+     campoTotal.text("0");
+     document.getElementById("total-pontos").style.color = "#1D2143";
+     document.querySelector(".title-pontos").style.color = "#1D2143";
+     document.querySelector("span#total-pontos").style.border = "none";
+     document.querySelector("span#total-pontos").style.borderBottom = "1px solid #1D2143";
+
+}
+
+// Variáveis
+let avisoModal = $("#aviso");
+let avisoModalErro0 = $("#aviso-erro--0");
+let avisoModalEnvio = $("#aviso-envio");
+let avisoAlertaNome = $("#msn-erro-nome");
+let avisoAlertaEmail = $("#msn-erro-email");
+
+let infos = $(".conteudo-infos");
+let perguntasPessoais = $(".conteudo-perguntas--pessoal");
+let perguntasPadroes = $(".conteudo-perguntas");
+let botoes = $(".conteudo-botoes");
+
+// Função que coloca os valores no campo total
+function totalPontos() {
+
+     let criativProv = inputCriatvidade.val();
+     let influencProv = inputInfluencia.val();
+     let googleProv = inputGoggleA.val();
+     let neuroProv = inputNeurociencia.val();
+     let planeProv = inputPlanejamento.val();
+     let ouviProv = inputOratoria.val();
+     let storyProv = inputStorytelling.val();
+
+     let caixaValoresTotais = [];
+     caixaValoresTotais.push(criativProv, influencProv, googleProv, neuroProv, planeProv, ouviProv, storyProv);
+
+     let valoresProv = caixaValoresTotais.map((num) => {
+          return parseInt(num);
+     });
+     //console.log(valoresProv);
+
+     let somatoria = 0;
+     let resto;
+     for (let j = 0; j < valoresProv.length; j++) {
+          somatoria += valoresProv[j];
+     }
+
+     if (somatoria < 20) {
+          document.getElementById("total-pontos").innerHTML = somatoria;
+          document.getElementById("total-pontos").style.color = "#1D2143";
+          document.querySelector(".title-pontos").style.color = "#1D2143";
+          document.querySelector("span#total-pontos").style.border = "none";
+          document.querySelector("span#total-pontos").style.borderBottom = "1px solid #1D2143";
+          avisoModal.css("display", "none");
+     }
+     else if (somatoria === 20) {
+          document.getElementById("total-pontos").innerHTML = somatoria;
+          document.getElementById("total-pontos").style.color = "#256D1B";
+          document.querySelector(".title-pontos").style.color = "#256D1B";
+          document.querySelector("span#total-pontos").style.border = "1px solid #256D1B";
+          avisoModal.css("display", "none");
+     }
+     else if (somatoria > 20) {
+          resto = somatoria - 20;
+
+          document.querySelector("#aviso .msn-text-modificado").innerHTML = `Você distribuiu ${resto} créditos a mais do que é permitido!`;
+          avisoModal.css("display", "grid");
+          document.getElementById("total-pontos").style.color = "#E3170A";
+          document.querySelector(".title-pontos").style.color = "#E3170A";
+          document.querySelector("span#total-pontos").style.border = "1px solid #E3170A";
+          //console.log("Erro do 20");
+     }
+
+}
+
+// Função que pega os valores, calcula e exibe na tela avisos
+function btnSubmit() {
+
+     let criativ = inputCriatvidade.val();
+     let influenc = inputInfluencia.val();
+     let google = inputGoggleA.val();
+     let neuro = inputNeurociencia.val();
+     let plane = inputPlanejamento.val();
+     let ouvi = inputOratoria.val();
+     let story = inputStorytelling.val();
+
+     let caixaValores = [];
+
+     caixaValores.push(criativ, influenc, google, neuro, plane, ouvi, story);
+
+     let novosVal = caixaValores.map((num) => {
+          return parseInt(num);
+     });
+
+     let soma = 0;
+     for (let i = 0; i < novosVal.length; i++) {
+          soma += novosVal[i];
+     }
+
+     //console.log(novosVal);
+     //console.log(soma);
+
+     if (soma < 20) {
+          avisoModalErro0.css("display", "grid");
+          //console.log("Erro do 0");
+     }
+     else if (inputNome.val() === "" || inputEmail.val() === "") {
+          //console.log("Campos estão vazios");
+          if (inputNome.val() === "") {
+               avisoAlertaNome.css("display", "block");
+          }
+          else if (inputEmail.val() === "") {
+               avisoAlertaEmail.css("display", "block");
+          }
+     }
+     else if (soma > 20 && inputNome.val() != "" && inputEmail.val() != "") {
+          avisoModal.css("display", "grid");
+     }
+     else if (soma === 20 && inputNome.val() != "" && inputEmail.val() != "") {
+          avisoModal.css("display", "none");
+          //console.log("Eviar");
+          enviarDados();
+
+          infos.hide();
+          perguntasPessoais.hide();
+          perguntasPadroes.hide();
+          botoes.hide();
+
+          avisoModalEnvio.css("display", "flex");
+     }
+
+}
+
+document.getElementById("msn-btn").addEventListener("click", () => {
+     avisoModal.css("display", "none");
+});
+
+document.getElementById("msn-btn--erro0").addEventListener("click", () => {
+     avisoModalErro0.css("display", "none");
+});
+
+// Função que envia os dados para o código servidor
+function enviarDados() {
+
+     let valores = {};
+
+     valores.nome = inputNome.val();
+     valores.email = inputEmail.val();
+     valores.criatividade = inputCriatvidade.val();
+     valores.influencia = inputInfluencia.val();
+     valores.google = inputGoggleA.val();
+     valores.neurociencia = inputNeurociencia.val();
+     valores.planejamento = inputPlanejamento.val();
+     valores.oratoria = inputOratoria.val();
+     valores.storytelling = inputStorytelling.val();
+
+     //console.log(valores);
+
+     $("#criatividade-dado").val(valores.criatividade);
+     $("#influencia-dado").val(valores.influencia);
+     $("#google-dado").val(valores.google);
+     $("#neurociencia-dado").val(valores.neurociencia);
+     $("#planejamento-dado").val(valores.planejamento);
+     $("#oratoria-dado").val(valores.oratoria);
+     $("#storytelling-dado").val(valores.storytelling);
+
+     let jsonDados = JSON.stringify(valores);
+     console.log(jsonDados);
+
+     google.script.run.inserir(jsonDados);
+
+     inputNome.val("");
+     inputEmail.val("");
+     inputCriatvidade.val("0");
+     inputInfluencia.val("0");
+     inputGoggleA.val("0");
+     inputNeurociencia.val("0");
+     inputPlanejamento.val("0");
+     inputOratoria.val("0");
+     inputStorytelling.val("0");
+     resetStyleTotal();
+
+     $("#criatividade-dado").val("");
+     $("#influencia-dado").val("");
+     $("#google-dado").val("");
+     $("#neurociencia-dado").val("");
+     $("#planejamento-dado").val("");
+     $("#oratoria-dado").val("");
+     $("#storytelling-dado").val("");
+
+}
+
+// Ouvinte de evento que mostra todas as perguntas
+document.getElementById("btn-att").addEventListener("click", () => {
+
+     infos.show();
+     perguntasPessoais.show();
+     perguntasPadroes.show();
+     botoes.show();
+
+     avisoModalEnvio.css("display", "none");
+
+});
+
+/*
+function validarEmail(email) {
+  var re = /\S+@\S+\.\S+/;
+  return re.test(email);
+}
+*/

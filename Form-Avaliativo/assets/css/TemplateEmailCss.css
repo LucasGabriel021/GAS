@@ -1,0 +1,31 @@
+/* IMPORT DA FONTE */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;800&display=swap');
+
+
+/* RESET DO CSS */
+* {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+     font-family: 'Montserrat', sans-serif;
+     font-size: 14px;
+     font-weight: 600;
+}
+
+
+/* DEVINIÇÃO DAS CORES */
+:root {
+     --azul-escuro: #1D2143;
+     --amarelo: #FDC815;
+     --cinza-one: #d9d9d9;
+     --branco: #eee;
+}
+
+.rascunho table {
+  border: 1px solid var(--azul-escuro);
+  width: 100%;
+}
+
+td.titulo-tabela {
+  text-align: center;
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+     <base target="_top">
+
+     <?!= include("TemplateEmailCss") ?>
+</head>
+
+<body>
+     <div class="titulo-email">Olá,
+          <?= nomeCompleto ?>!
+     </div>
+     <br>
+     <div class="desc-email">Confirmamos o preenchimento da escolha de módulos do Apresente AÇÃO!</div>
+     <br>
+     <br>
+     <div class="rascunho">
+          <table>
+               <thead>
+                    <tr>
+                         <td class="titulo-tabela">Veja a resposta enviada:</td>
+                    </tr>
+               </thead>
+               <tbody>
+                    <tr>
+                         <td>Criatividade:</td>
+                         <td>
+                              <?= criatividadeEmail ?>
+                         </td>
+                    </tr>
+                    <tr>
+                         <td>Influência e Persuasão:</td>
+                         <td>
+                              <?= influenciaEmail ?>
+                         </td>
+                    </tr>
+                    <tr>
+                         <td>Google Apresentações:</td>
+                         <td>
+                              <?= googleEmail ?>
+                         </td>
+                    </tr>
+                    <tr>
+                         <td>Neurociência:</td>
+                         <td>
+                              <?= neurocienciaEmail ?>
+                         </td>
+                    </tr>
+                    <tr>
+                         <td>Planejamento:</td>
+                         <td>
+                              <?= planejamentoEmail ?>
+                         </td>
+                    </tr>
+                    <tr>
+                         <td>Oratória:</td>
+                         <td>
+                              <?= oratoriaEmail ?>
+                         </td>
+                    </tr>
+                    <tr>
+                         <td>Storytelling:</td>
+                         <td>
+                              <?= storytellingEmail ?>
+                         </td>
+                    </tr>
+               </tbody>
+          </table>
+     </div>
+     <br>
+     <div class="agredecimentos-email">INOVA - Coordenação de Inovação e Liderança</div>
+     <div class="agredecimentos-email">Polícia Rodoviária Federal</div>
+
+</body>
+
+</html>
